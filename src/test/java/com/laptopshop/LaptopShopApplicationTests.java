@@ -10,15 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.laptopshop.entities.DanhMuc;
-import com.laptopshop.entities.DonHang;
-import com.laptopshop.entities.NguoiDung;
-import com.laptopshop.entities.VaiTro;
-import com.laptopshop.repository.DonHangRepository;
-import com.laptopshop.repository.NguoiDungRepository;
-import com.laptopshop.service.DanhMucService;
-import com.laptopshop.service.NguoiDungService;
-import com.laptopshop.service.SanPhamService;
+import com.carshop.entities.DanhMuc;
+import com.carshop.entities.DonHang;
+import com.carshop.entities.NguoiDung;
+import com.carshop.entities.VaiTro;
+import com.carshop.repository.DonHangRepository;
+import com.carshop.repository.NguoiDungRepository;
+import com.carshop.service.DanhMucService;
+import com.carshop.service.NguoiDungService;
+import com.carshop.service.SanPhamService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

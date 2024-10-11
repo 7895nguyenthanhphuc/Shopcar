@@ -63,7 +63,7 @@
          				<c:if test = "${loop.index%4 == 0}">
          					<div class="section group">
          					<div class="grid_1_of_4 images_1_of_4 products-info"><a href="sp?id=${sanpham.id}">
-									<img style="width: 300px; height: 238px" src="/laptopshop/img/${sanpham.id}.png">
+									<img style="width: 300px; height: 238px" src="/carshop/img/${sanpham.id}.png">
 									<h3>${sanpham.tenSanPham}</h3></a>
 									<h3 class="changeToVND">${sanpham.donGia}</h3>
 									<button onClick="addToCart(${sanpham.id})" class="btn btn-warning"><span class= "glyphicon glyphicon-shopping-cart pull-center"></span> Giỏ hàng</button>
@@ -74,7 +74,7 @@
          				<c:if test = "${loop.index%4 != 0}">
          					<c:if test = "${loop.index%4 == 3}">
          						<div class="grid_1_of_4 images_1_of_4 products-info"><a href="sp?id=${sanpham.id}">
-									<img style="width: 300px; height: 238px" src="/laptopshop/img/${sanpham.id}.png">
+									<img style="width: 300px; height: 238px" src="/carshop/img/${sanpham.id}.png">
 									<h3>${sanpham.tenSanPham}</h3></a>
 									<h3 class="changeToVND">${sanpham.donGia}</h3>
 									<button onClick="addToCart(${sanpham.id})" class="btn btn-warning"><span class= "glyphicon glyphicon-shopping-cart pull-center"></span> Giỏ hàng</button>
@@ -85,7 +85,7 @@
 							
 							<c:if test = "${loop.index%4 != 3}">
 								<div class="grid_1_of_4 images_1_of_4 products-info"><a href="sp?id=${sanpham.id}">
-									<img style="width: 300px; height: 238px" src="/laptopshop/img/${sanpham.id}.png">
+									<img style="width: 300px; height: 238px" src="/carshop/img/${sanpham.id}.png">
 									<h3>${sanpham.tenSanPham}</h3></a>
 									<h3 class="changeToVND">${sanpham.donGia}</h3>
 									<button onClick="addToCart(${sanpham.id})" class="btn btn-warning"><span class= "glyphicon glyphicon-shopping-cart pull-center"></span> Giỏ hàng</button>
@@ -98,7 +98,7 @@
      					<c:if test = "${loop.index%4 == 0}">
      						<div class="section group">
          					<div class="grid_1_of_4 images_1_of_4 products-info"><a href="sp?id=${sanpham.id}">
-									<img style="width: 300px; height: 238px" src="/laptopshop/img/${sanpham.id}.png">
+									<img style="width: 300px; height: 238px" src="/carshop/img/${sanpham.id}.png">
 									<h3>${sanpham.tenSanPham}</h3></a>
 									<h3 class="changeToVND">${sanpham.donGia}</h3>
 									<button onClick="addToCart(${sanpham.id})" class="btn btn-warning"><span class= "glyphicon glyphicon-shopping-cart pull-center"></span> Giỏ hàng</button>
@@ -108,7 +108,7 @@
      					</c:if>
      					<c:if test = "${loop.index%4 != 0}">
      						<div class="grid_1_of_4 images_1_of_4 products-info"><a href="sp?id=${sanpham.id}">
-									<img style="width: 300px; height: 238px" src="/laptopshop/img/${sanpham.id}.png">
+									<img style="width: 300px; height: 238px" src="/carshop/img/${sanpham.id}.png">
 									<h3>${sanpham.tenSanPham}</h3></a>
 									<h3 class="changeToVND">${sanpham.donGia}</h3>
 									<button onClick="addToCart(${sanpham.id})" class="btn btn-warning"><span class= "glyphicon glyphicon-shopping-cart pull-center"></span> Giỏ hàng </button>
@@ -121,13 +121,13 @@
 		    	<c:if test = "${list.size() != 0}">
 		    		<div class="paging">
             		<c:if test = "${currentPage != 1}">
-                		<a href="/laptopshop/search?name=${name}&page=${currentPage-1}&sort=${sort}&range=${range}&brand=${brand}&manufactor=${manufactor}">Back</a>
+                		<a href="/carshop/search?name=${name}&page=${currentPage-1}&sort=${sort}&range=${range}&brand=${brand}&manufactor=${manufactor}">Back</a>
                 	</c:if>
                 	<c:if test = "${currentPage == 1}">	
         				<a class="current">1</a>
         			</c:if>
         			<c:if test = "${currentPage != 1}">	
-        				<a href="/laptopshop/search?name=${name}&page=1&sort=${sort}&range=${range}&brand=${brand}&manufactor=${manufactor}">1</a>
+        				<a href="/carshop/search?name=${name}&page=1&sort=${sort}&range=${range}&brand=${brand}&manufactor=${manufactor}">1</a>
         			</c:if>
         			
         			<c:forEach var="pag" items="${pageList}" varStatus="loop">
@@ -135,12 +135,12 @@
         					<a class="current">${pag}</a>
         				</c:if>
         				<c:if test = "${currentPage != pag}">	
-        					<a href="/laptopshop/search?name=${name}&page=${pag}&sort=${sort}&range=${range}&brand=${brand}&manufactor=${manufactor}">${pag}</a>
+        					<a href="/carshop/search?name=${name}&page=${pag}&sort=${sort}&range=${range}&brand=${brand}&manufactor=${manufactor}">${pag}</a>
         				</c:if>
       				</c:forEach>
 
             		<c:if test = "${currentPage != totalPage}">
-                		<a href="/laptopshop/search?name=${name}&page=${currentPage+1}&sort=${sort}&range=${range}&brand=${brand}&manufactor=${manufactor}">Next</a>	
+                		<a href="/carshop/search?name=${name}&page=${currentPage+1}&sort=${sort}&range=${range}&brand=${brand}&manufactor=${manufactor}">Next</a>	
                 	</c:if>
                 	
             
@@ -160,11 +160,11 @@
         				<div class="select-range">
         					<select name="range" class="form-control">
         						<option value="">Tất cả giá</option>
-								<option value="duoi-2-trieu">Dưới 2 triệu</option>
-								<option value="2-trieu-den-4-trieu">2 triệu đến 4 triệu</option>
-								<option value="4-trieu-den-6-trieu">4 triệu - 6 triệu</option>
-								<option value="6-trieu-den-10-trieu">6 triệu - 10 triệu</option>
-								<option value="tren-10-trieu">Trên 10 triệu</option>					
+								<option value="duoi-200-trieu">Dưới 200 triệu</option>
+								<option value="200-trieu-den-400-trieu">200 triệu đến 400 triệu</option>
+								<option value="400-trieu-den-600-trieu">400 triệu - 600 triệu</option>
+								<option value="600-trieu-den-900-trieu">600 triệu - 900 triệu</option>
+								<option value="tren-900-trieu">Trên 900 triệu</option>					
         					</select>
         				</div>   				
         				<p>Danh mục</p>

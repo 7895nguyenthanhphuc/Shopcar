@@ -60,7 +60,7 @@
 				
 					 <tr style="text-align: center;">
 						    <td>
-						    	<img src="/laptopshop/img/${sanpham.id}.png" alt="not found img" class="img-reponsive fix-size-img">
+						    	<img src="/carshop/img/${sanpham.id}.png" alt="not found img" class="img-reponsive fix-size-img">
 						    </td>
 						    <td style="color:green">
 						    ${sanpham.tenSanPham}
@@ -87,7 +87,7 @@
 		
 		
 
-		<p>LaptopShop xin chân thành cảm ơn quý khách hàng đã tin tưởng sử dụng dịch vụ, sản phẩm của chúng tôi</p><br>
+		<p>Car Shop xin chân thành cảm ơn quý khách hàng đã tin tưởng sử dụng dịch vụ, sản phẩm của chúng tôi</p><br>
 		<a href="<%=request.getContextPath()%>/">Nhấn vào đây để tiếp tục mua sắm</a>
 		</div>
 		<div class="col-md-1">

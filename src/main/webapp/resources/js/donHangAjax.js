@@ -9,7 +9,7 @@ $(document).ready(function() {
 			type: "GET",		
 			data: data,
 			contentType : "application/json",
-			url: "http://localhost:8080/laptopshop/api/don-hang/all" + '?page=' + page,
+			url: "http://localhost:8080/carshop/api/don-hang/all" + '?page=' + page,
 			success: function(result){
 				$.each(result.content, function(i, donHang){
 					// tính giá trị đơn hàng\
@@ -17,11 +17,13 @@ $(document).ready(function() {
 					var check = donHang.trangThaiDonHang == "Hoàn thành" || donHang.trangThaiDonHang == "Chờ duyệt";
 					if(check){
 						$.each(donHang.danhSachChiTiet, function(i, chiTiet){
-							sum += chiTiet.donGia * chiTiet.soLuongNhanHang;
+							//sum += chiTiet.donGia * chiTiet.soLuongNhanHang;
+							sum += chiTiet.donGia ;
 						});
 					} else {
 						$.each(donHang.danhSachChiTiet, function(i, chiTiet){
-							sum += chiTiet.donGia * chiTiet.soLuongDat;
+							//sum += chiTiet.donGia * chiTiet.soLuongDat;
+							sum += chiTiet.donGia;
 						});
 					}
 
@@ -96,7 +98,7 @@ $(document).ready(function() {
      		async:false,
  			type : "POST",
  			contentType : "application/json",
- 			url : "http://localhost:8080/laptopshop/api/don-hang/assign?shipper="+email+"&donHangId="+donHangId,
+ 			url : "http://localhost:8080/carshop/api/don-hang/assign?shipper="+email+"&donHangId="+donHangId,
  			enctype: 'multipart/form-data',
  	        
  			success : function(response) {
@@ -139,7 +141,7 @@ $(document).ready(function() {
 		
 		var donHangId = $(this).parent().prev().children().val();	
 //		console.log(donHangId);
-		var href = "http://localhost:8080/laptopshop/api/don-hang/"+donHangId;
+		var href = "http://localhost:8080/carshop/api/don-hang/"+donHangId;
 		$.get(href, function(donHang) {
 			$('#maDonHang').text("Mã đơn hàng: "+ donHang.id);
 			$('#hoTenNguoiNhan').text("Người nhận: "+ donHang.hoTenNguoiNhan);
@@ -207,7 +209,7 @@ $(document).ready(function() {
 		if(donHangId != ''){
     	  $('.donHangTable tbody tr').remove();
     	  $('.pagination li').remove();
-		  var href = "http://localhost:8080/laptopshop/api/don-hang/"+donHangId;
+		  var href = "http://localhost:8080/carshop/api/don-hang/"+donHangId;
 		  $.get(href, function(donHang) {
 				// tính giá trị đơn hàng
 			  var sum = 0;
@@ -257,7 +259,7 @@ $(document).ready(function() {
 		event.preventDefault();
 		var donHangId = $(this).parent().prev().children().val();	
 		$("#idDonHangXacNhan").val(donHangId);
-		var href = "http://localhost:8080/laptopshop/api/don-hang/"+donHangId;
+		var href = "http://localhost:8080/carshop/api/don-hang/"+donHangId;
 		$.get(href, function(donHang) {
 			// thêm bảng:
 			var stt = 1;
@@ -293,7 +295,7 @@ $(document).ready(function() {
      		async:false,
  			type : "POST",
  			contentType : "application/json",
- 			url : "http://localhost:8080/laptopshop/api/don-hang/update?donHangId="+$("#idDonHangXacNhan").val()+"&ghiChu="+$("#ghiChuAdmin").val(),
+ 			url : "http://localhost:8080/carshop/api/don-hang/update?donHangId="+$("#idDonHangXacNhan").val()+"&ghiChu="+$("#ghiChuAdmin").val(),
  			enctype: 'multipart/form-data',
 			success : function(response) {
 				$("#capNhatTrangThaiModal").modal('hide');
@@ -322,7 +324,7 @@ $(document).ready(function() {
      		async:false,
  			type : "POST",
  			contentType : "application/json",
- 			url : "http://localhost:8080/laptopshop/api/don-hang/cancel?donHangId="+donHangId,
+ 			url : "http://localhost:8080/carshop/api/don-hang/cancel?donHangId="+donHangId,
 			success : function(response) {
 				alert("Hủy đơn hàng thành công");
 			},

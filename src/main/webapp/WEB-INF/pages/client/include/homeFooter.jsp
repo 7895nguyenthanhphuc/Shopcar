@@ -10,13 +10,13 @@
 				</div>
 				<div class="col_1_of_4 span_1_of_4">
 					<h3>Latest-News</h3>
-					<p>Bphone 3 is coming...</p>
-					<p>Bphone 3 is coming...</p>
+					<p>Audi is coming...</p>
+					<p>BMW is coming...</p>
 				</div>
 			  	<div class="col_1_of_4 span_1_of_4">
 					<h3>Địa điểm cửa hàng</h3>
-					<p> 1000 Giải Phóng-Hai Bà Trưng-Hà Nội</p>
-					<p> 1000 Giải Phóng-Hai Bà Trưng-Hà Nội</p>
+					<p> 236B Lê Văn Sỹ - Phường 1 - Quận Tân Bình - TP.HCM</p>
+					
 				</div> 
 				<div class="col_1_of_4 span_1_of_4 footer-lastgrid">
 					<h3>Follow Us:</h3>
@@ -32,7 +32,7 @@
 		<div class="clear"> </div>
 		<div class="wrap">
 		<div class="copy-right">
-			<p>&copy; 2018 Laptop Store. All Rights Reserved | Design by Group 14- HUST </p>
+			<p> Copyright &copy; 2024 Car Store.  </p>
 		</div>
 		</div>
 		</div>

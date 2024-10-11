@@ -52,11 +52,11 @@
 			<div class="form-group">
 				<select class="form-control" name="donGia" id="price">
 					<option value="">Tất cả giá</option>
-					<option value="duoi-2-trieu">Dưới 2 triệu</option>
-					<option value="2-trieu-den-4-trieu">2 triệu đến 4 triệu</option>
-					<option value="4-trieu-den-6-trieu">4 triệu - 6 triệu</option>
-					<option value="6-trieu-den-10-trieu">6 triệu - 10 triệu</option>
-					<option value="tren-10-trieu">Trên 10 triệu</option>
+					<option value="duoi-200-trieu">Dưới 200 triệu</option>
+					<option value="200-trieu-den-400-trieu">200 triệu đến 400 triệu</option>
+					<option value="400-trieu-den-600-trieu">400 triệu - 600 triệu</option>
+					<option value="600-trieu-den-1-ty">600 triệu - 1 tỷ</option>
+					<option value="tren-1-ty">Trên 10 tỷ</option>
 				</select>
 			</div>
 
@@ -103,15 +103,15 @@
 	</div>
 
 	<div class="row col-md-6">
-		<form id="lapTopForm" class="lapTopForm">
-			<div class="modal fade lapTopModal" tabindex="-1" role="dialog"
+		<form id="CarForm" class="CarForm">
+			<div class="modal fade CarModal" tabindex="-1" role="dialog"
 				data-keyboard="false" data-backdrop="static">
 				<div class="modal-dialog modal-lg" role="document"
 					style="width: 60%;">
 					<div class="modal-content">
 						<div class="modal-header">
 							<h5 class="modal-title" id="exampleModalLabel">Thêm mới/ Cập
-								nhật Laptop</h5>
+								nhật Xe</h5>
 							<button type="button" class="close" data-dismiss="modal"
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
@@ -121,11 +121,11 @@
 							<div class="row">
 								<div>
 									<input type="hidden" class="form-control" name="danhMucId"
-										id="idDanhMucLaptop">
+										id="idDanhMucCar">
 								</div>
 								<div>
 									<input type="hidden" class="form-control" name="id"
-										id="idSanPhamLapTop" readonly>
+										id="idSanPhamCar" readonly>
 								</div>
 								<div class="form-group col-md-7">
 									<label for="inputPassword4">Tên sản phẩm</label> <input
@@ -140,7 +140,7 @@
 
 							<div class="row">
 								<div class="form-group col-md-4">
-									<label for="inputState">Hãng Sản Xuất</label> <select
+									<label for="inputState">Hãng Sản Xuất ne </label> <select
 										name="nhaSXId" class="form-control" id="nhaSXId">
 										<c:forEach var="nhanHieu" items="${listNhanHieu }">
 											<option value="${nhanHieu.id}">${nhanHieu.tenHangSanXuat}</option>
@@ -148,13 +148,13 @@
 									</select>
 								</div>
 								<div class="form-group col-md-4">
-									<label for="inputPassword4">Hệ điều hành</label> <input
-										type="text" class="form-control" name="heDieuHanh">
+									<label for="inputPassword4">Kiểu Dáng</label> <input
+										type="text" class="form-control" name="kieuDang">
 								</div>
 
 								<div class="form-group col-md-4">
-									<label for="inputEmail4">Ram</label> <input type="text"
-										class="form-control" name="ram" required="required">
+									<label for="inputEmail4">Số KM Đã Đi</label> <input type="text"
+										class="form-control" name="soKM" required="required">
 								</div>
 
 							</div>
@@ -162,16 +162,16 @@
 							<div class="row">
 
 								<div class="form-group col-md-4">
-									<label for="inputPassword4">Màn hình</label> <input type="text"
-										class="form-control" name="manHinh" required="required">
+									<label for="inputPassword4">Xuất Sứ</label> <input type="text"
+										class="form-control" name="xuatSu" required="required">
 								</div>
 								<div class="form-group col-md-4">
-									<label for="inputEmail4">CPU</label> <input type="text"
-										class="form-control" name="cpu">
+									<label for="inputEmail4">Hộp Số</label> <input type="text"
+										class="form-control" name="hopSo" required="required">
 								</div>
 								<div class="form-group col-md-4">
-									<label for="inputPassword4">Thiết kế</label> <input type="text"
-										class="form-control" name="thietKe" required="required">
+									<label for="inputPassword4">Màu Xe</label> <input type="text"
+										class="form-control" name="mauXe" required="required">
 								</div>
 							</div>
 
@@ -185,8 +185,8 @@
 
 							<div class="row">
 								<div class="form-group col-md-4">
-									<label for="inputEmail4">Dung lượng Pin</label> <input
-										type="text" class="form-control" name="dungLuongPin"
+									<label for="inputEmail4">Số Chỗ Ngồi</label> <input
+										type="number" class="form-control" name="soChoNgoi" value="0"
 										required="required">
 								</div>
 								<div class="form-group col-md-4">
@@ -254,7 +254,7 @@
 
 							<div class="row">
 								<div class="form-group col-md-6">
-									<label for="inputState">Hãng Sản Xuất</label> <select
+									<label for="inputState">Hãng Sản Xuất </label> <select
 										name="nhaSXId" id="nhaSXIdKhac" class="form-control">
 										<c:forEach var="nhanHieu" items="${listNhanHieu }">
 											<option value="${nhanHieu.id }">${nhanHieu.tenHangSanXuat}
@@ -262,14 +262,30 @@
 										</c:forEach>
 									</select>
 								</div>
+
+								<div class="form-group col-md-4">
+									<label for="inputPassword4">Kiểu Dáng</label> <input
+										type="text" class="form-control" name="kieuDang">
+								</div>
+
+							</div>
+
+							<div class="row">
+
+								<div class="form-group col-md-4">
+									<label for="inputPassword4">Xuất Sứ</label> <input type="text"
+										class="form-control" name="xuatSu" required="required">
+								</div>
+								
+							</div>
+							
+							<div class="row">
 								<div class="form-group col-md-6">
 									<label for="inputPassword4">Đơn giá</label> <input
 										type="number" class="form-control" name="donGia" min="0"
 										value="0" id="donGiaKhac">
 								</div>
-							</div>
 
-							<div class="row">
 								<div class="form-group col-md-12">
 									<label for="inputPassword4">Mô tả chung</label>
 									<textarea class="form-control" id="inputPassword4"
@@ -338,12 +354,12 @@
 												<p class="maSanPham"></p>
 												<p class="tenSanPham"></p>
 												<p class="hangSangXuat"></p>
-												<p class="cpu"></p>
-												<p class="ram"></p>
-												<p class="thietKe"></p>
-												<p class="heDieuHanh"></p>
-												<p class="manHinh"></p>
-												<p class="dungLuongPin"></p>
+												<p class="hopSo"></p>
+												<p class="soKM"></p>
+												<p class="mauXe"></p>
+												<p class="kieuDang"></p>
+												<p class="xuatSu"></p>
+												<p class="soChoNgoi"></p>
 												<p class="thongTinChung"></p>
 												<p class="baoHanh"></p>
 												<p class="donGia"></p>

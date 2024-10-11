@@ -20,7 +20,7 @@
 			khoản</button>
 		<hr>
 		<div class="form-group form-inline">
-			<label for="sel1"><strong>Lọc tài khoản:</strong> </label> <select
+			<%--@declare id="sel1"--%><label for="sel1"><strong>Lọc tài khoản:</strong> </label> <select
 				id="vaiTro" class="form-control">
 				<c:forEach var="vaiTro" items="${listVaiTro}">
 					<option value="${vaiTro.tenVaiTro }">${vaiTro.tenVaiTro }</option>
@@ -94,7 +94,7 @@
 								</div>
 
 								<div class="form-group">
-									<label for="name">Họ tên:</label> <input type="text"
+									<%--@declare id="name"--%><label for="name">Họ tên:</label> <input type="text"
 										class="form-control" name="hoTen" required />
 								</div>
 								<div class="form-group">
@@ -125,6 +125,6 @@
 	<jsp:include page="template/footer.jsp"></jsp:include>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/2.9.0/jquery.serializejson.js"></script>
-	<script src="<c:url value='/js/taiKhoanAjax.js'/>"></script>
+	<script src="<c:url value='js/taiKhoanAjax.js/'/>"></script>
 </body>
 </html>

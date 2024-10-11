@@ -11,11 +11,11 @@ $(document).ready(function() {
 			type: "GET",		
 			data: data,
 			contentType : "application/json",
-			url: "http://localhost:8080/laptopshop/api/san-pham/all" + '?page=' + page,
+			url: "http://localhost:8080/carshop/api/san-pham/all" + '?page=' + page,
 			success: function(result){
 				$.each(result.content, function(i, sanPham){
 					var sanPhamRow = '<tr>' +
-					                  '<td>' + '<img src="/laptopshop/img/'+sanPham.id+'.png" class="img-responsive" style="height: 50px; width: 50px" />'+'</td>' +
+					                  '<td>' + '<img src="/carshop/img/'+sanPham.id+'.png" class="img-responsive" style="height: 50px; width: 50px" />'+'</td>' +
 					                  '<td>' + sanPham.tenSanPham + '</td>' +
 					                  '<td>' + sanPham.danhMuc.tenDanhMuc + '</td>' +
 					                  '<td>' + sanPham.hangSanXuat.tenHangSanXuat + '</td>' +
@@ -24,8 +24,8 @@ $(document).ready(function() {
 					                  '<td width="0%">'+'<input type="hidden" id="sanPhamId" value=' + sanPham.id + '>'+ '</td>' + 
 					                  '<td> <button class="btn btn-warning btnChiTiet" style="margin-right: 6px">Chi tiết</button>' ;
 					
-					var checkTenDanhMuc = (sanPham.danhMuc.tenDanhMuc.toLowerCase()).indexOf("Laptop".toLowerCase());
-					sanPhamRow += ( checkTenDanhMuc != -1)?'<button class="btn btn-primary btnCapNhatLapTop" >Cập nhật</button>':'<button class="btn btn-primary btnCapNhatOther" >Cập nhật</button>';
+					var checkTenDanhMuc = (sanPham.danhMuc.tenDanhMuc.toLowerCase()).indexOf("Car".toLowerCase());
+					sanPhamRow += ( checkTenDanhMuc != -1)?'<button class="btn btn-primary btnCapNhatCar" >Cập nhật</button>':'<button class="btn btn-primary btnCapNhatOther" >Cập nhật</button>';
 					sanPhamRow += '  <button class="btn btn-danger btnXoaSanPham">Xóa</button></td>'+'</tr>';
 					$('.sanPhamTable tbody').append(sanPhamRow);
 				});
@@ -57,11 +57,11 @@ $(document).ready(function() {
 		var open = $(this).data("isopen");
 		if (open) {
 			var label = $('#danhMucDropdown option:selected').text();
-			if ((label.toLowerCase()).indexOf("Laptop".toLowerCase()) != -1) {
-				$('.lapTopModal').modal('show');
-				$("#idDanhMucLaptop").val($(this).val());
-				$('#lapTopForm').removeClass().addClass("addLapTopForm");
-				$('#lapTopForm #btnSubmit').removeClass().addClass("btn btn-primary btnSaveLapTopForm");
+			if ((label.toLowerCase()).indexOf("Ô Tô".toLowerCase()) != -1) {
+				$('.CarModal').modal('show');
+				$("#idDanhMucCar").val($(this).val());
+				$('#CarForm').removeClass().addClass("addCarForm");
+				$('#CarForm #btnSubmit').removeClass().addClass("btn btn-primary btnSaveCarForm");
 			} else {
 				$('.otherModal').modal('show');
 				$("#idDanhMucKhac").val($(this).val());
@@ -84,14 +84,14 @@ $(document).ready(function() {
     
     
 	// event khi ẩn modal form
-	$('.lapTopModal, .otherModal').on('hidden.bs.modal', function(e) {
+	$('.CarModal, .otherModal').on('hidden.bs.modal', function(e) {
 		e.preventDefault();
-		$("#idDanhMucLaptop, #idDanhMucKhac").val("");
-		$("#idSanPhamLapTop, #idSanPhamKhac").val("");
+		$("#idDanhMucCar, #idDanhMucKhac").val("");
+		$("#idSanPhamCar, #idSanPhamKhac").val("");
 			
-	    $('#lapTopForm').removeClass().addClass("lapTopForm");
-		$('#lapTopForm #btnSubmit').removeClass().addClass("btn btn-primary");
-		$('#lapTopForm').trigger("reset");
+	    $('#CarForm').removeClass().addClass("CarForm");
+		$('#CarForm #btnSubmit').removeClass().addClass("btn btn-primary");
+		$('#CarForm').trigger("reset");
 		
 		$('#otherForm').removeClass().addClass("otherForm");
 		$('#otherForm #btnSubmit').removeClass().addClass("btn btn-primary");
@@ -99,16 +99,16 @@ $(document).ready(function() {
 		$('input, textarea').next().remove();
 	});
 	
-	// btn Save Form Laptop Event
-    $(document).on('click', '.btnSaveLapTopForm', function (event) {
+	// btn Save Form Car Event
+    $(document).on('click', '.btnSaveCarForm', function (event) {
     	event.preventDefault();
-		ajaxPostLapTop();
+		ajaxPostCar();
 		resetData();
     });
  
-    function ajaxPostLapTop() {
+    function ajaxPostCar() {
     	// PREPATEE DATA
-    	 var form = $('.addLapTopForm')[0];   	 
+    	 var form = $('.addCarForm')[0];   	 
     	 var data = new FormData(form);
     	 
     	 // do post
@@ -116,7 +116,7 @@ $(document).ready(function() {
      		async:false,
  			type : "POST",
  			contentType : "application/json",
- 			url : "http://localhost:8080/laptopshop/api/san-pham/save",
+ 			url : "http://localhost:8080/carshop/api/san-pham/save",
  			enctype: 'multipart/form-data',
  			data : data,
  			
@@ -129,7 +129,7 @@ $(document).ready(function() {
  	        
  			success : function(response) {
  				if(response.status == "success"){
- 					$('.lapTopModal').modal('hide');
+ 					$('.CarModal').modal('hide');
  					alert("Thêm thành công");
  				} else {
  			    	$('input, textarea').next().remove();
@@ -165,7 +165,7 @@ $(document).ready(function() {
      		async:false,
  			type : "POST",
  			contentType : "application/json",
- 			url : "http://localhost:8080/laptopshop/api/san-pham/save",
+ 			url : "http://localhost:8080/carshop/api/san-pham/save",
  			enctype: 'multipart/form-data',
  			data : data,
  			
@@ -200,35 +200,35 @@ $(document).ready(function() {
     
     
     // click cập nhật button 
-    // vs danh mục laptop
-    $(document).on("click",".btnCapNhatLapTop", function(event){
+    // vs danh mục Car
+    $(document).on("click",".btnCapNhatCar", function(event){
 		event.preventDefault();
 		var sanPhamId = $(this).parent().prev().children().val();	
-		$('#lapTopForm').removeClass().addClass("updateLaptopForm");
-		$('#lapTopForm #btnSubmit').removeClass().addClass("btn btn-primary btnUpdateLaptopForm");
+		$('#CarForm').removeClass().addClass("updateCarForm");
+		$('#CarForm #btnSubmit').removeClass().addClass("btn btn-primary btnUpdateCarForm");
 	
-		var href = "http://localhost:8080/laptopshop/api/san-pham/"+sanPhamId;
+		var href = "http://localhost:8080/carshop/api/san-pham/"+sanPhamId;
 		$.get(href, function(sanPham) {
-			populate('.updateLaptopForm', sanPham);
-			$("#idDanhMucLaptop").val(sanPham.danhMuc.id);
+			populate('.updateCarForm', sanPham);
+			$("#idDanhMucCar").val(sanPham.danhMuc.id);
 			var hangSXId = sanPham.hangSanXuat.id;
 			$("#nhaSXId").val(hangSXId);	
 		});
 		
 		removeElementsByClass("error");		
-		$('.updateLaptopForm .lapTopModal').modal();
+		$('.updateCarForm .CarModal').modal();
 	});
     
-	// btn update Laptop form Event
-    $(document).on('click', '.btnUpdateLaptopForm', function (event) {
+	// btn update Car form Event
+    $(document).on('click', '.btnUpdateCarForm', function (event) {
     	event.preventDefault();
-		ajaxPutLapTop();
+		ajaxPutCar();
 		resetData();
     });
  
-    function ajaxPutLapTop() {
+    function ajaxPutCar() {
     	
-   	 var form = $('.updateLaptopForm')[0];   	 
+   	 var form = $('.updateCarForm')[0];   	 
 	 var data = new FormData(form);
 	 console.log(data);
 	 
@@ -237,7 +237,7 @@ $(document).ready(function() {
  		async:false,
 			type : "POST",
 			contentType : "application/json",
-			url : "http://localhost:8080/laptopshop/api/san-pham/save",
+			url : "http://localhost:8080/carshop/api/san-pham/save",
 			enctype: 'multipart/form-data',
 			data : data,
 			
@@ -250,7 +250,7 @@ $(document).ready(function() {
 	        
 			success : function(response) {
 				if(response.status == "success"){
-					$('.lapTopModal').modal('hide');
+					$('.CarModal').modal('hide');
 					alert("Cập nhật thành công");
 				} else {
 			    	$('input, textarea').next().remove();
@@ -276,7 +276,7 @@ $(document).ready(function() {
 		$('#otherForm').removeClass().addClass("updateOtherForm");
 		$('#otherForm #btnSubmit').removeClass().addClass("btn btn-primary btnUpdateOtherForm");
 	
-		var href = "http://localhost:8080/laptopshop/api/san-pham/"+sanPhamId;
+		var href = "http://localhost:8080/carshop/api/san-pham/"+sanPhamId;
 		$.get(href, function(sanPham) {
 			populate('.updateOtherForm', sanPham);
 			$("#idDanhMucKhac").val(sanPham.danhMuc.id);
@@ -303,7 +303,7 @@ $(document).ready(function() {
       		async:false,
   			type : "POST",
   			contentType : "application/json",
-  			url : "http://localhost:8080/laptopshop/api/san-pham/save",
+  			url : "http://localhost:8080/carshop/api/san-pham/save",
   			enctype: 'multipart/form-data',
   			data : data,
   			
@@ -348,7 +348,7 @@ $(document).ready(function() {
 		  $.ajax({
 			  async:false,
 			  type : "DELETE",
-			  url : "http://localhost:8080/laptopshop/api/san-pham/delete/" + sanPhamId,
+			  url : "http://localhost:8080/carshop/api/san-pham/delete/" + sanPhamId,
 			  success: function(resultMsg){
 				  resetDataForDelete();
 				  alert("Xóa thành công");
@@ -367,23 +367,23 @@ $(document).ready(function() {
     	var sanPhamId = $(this).parent().prev().children().val();	
     	console.log(sanPhamId);
     	
-    	var href = "http://localhost:8080/laptopshop/api/san-pham/"+sanPhamId;
+    	var href = "http://localhost:8080/carshop/api/san-pham/"+sanPhamId;
 		$.get(href, function(sanPham) {
-			$('.hinhAnh').attr("src", "/laptopshop/img/"+sanPham.id+".png");
+			$('.hinhAnh').attr("src", "/carshop/img/"+sanPham.id+".png");
 			$('.tenSanPham').html("<span style='font-weight: bold'>Tên sản phẩm: </span> "+ sanPham.tenSanPham);
 			$('.maSanPham').html("<span style='font-weight: bold'> Mã sản phẩm: </span>"+ sanPham.id);
 			$('.hangSangXuat').html("<span style='font-weight: bold'>Hãng sản xuất: </span>"+ sanPham.hangSanXuat.tenHangSanXuat);
 			
-			var checkTenDanhMuc = (sanPham.danhMuc.tenDanhMuc.toLowerCase()).indexOf("Laptop".toLowerCase());
+			var checkTenDanhMuc = (sanPham.danhMuc.tenDanhMuc.toLowerCase()).indexOf("Car".toLowerCase());
 			
 			console.log(checkTenDanhMuc != -1);
 			if(checkTenDanhMuc != -1){
-			  $('.cpu').html("<span style='font-weight: bold'>CPU: </span>"+ sanPham.cpu);
-			  $('.ram').html("<span style='font-weight: bold'>RAM: </span>"+ sanPham.ram);
-			  $('.thietKe').html("<span style='font-weight: bold'>Thiết kế: </span>"+ sanPham.thietKe);
-			  $('.dungLuongPin').html("<span style='font-weight: bold'>Dung lượng pin: </span>"+ sanPham.dungLuongPin);
-			  $('.heDieuHanh').html("<span style='font-weight: bold'>Hệ điều hành: </span>"+ sanPham.heDieuHanh);
-			  $('.manHinh').html("<span style='font-weight: bold'>Màn hình: </span>"+ sanPham.manHinh);
+			  $('.hopSo').html("<span style='font-weight: bold'>hopSo: </span>"+ sanPham.hopSo);
+			  $('.soKM').html("<span style='font-weight: bold'>soKM: </span>"+ sanPham.soKM);
+			  $('.mauXe').html("<span style='font-weight: bold'>Màu Xe: </span>"+ sanPham.mauXe);
+			  $('.soChoNgoi').html("<span style='font-weight: bold'>Số Chỗ Ngồi: </span>"+ sanPham.soChoNgoi);
+			  $('.heDieuHanh').html("<span style='font-weight: bold'>Kiểu Dáng: </span>"+ sanPham.kieuDang);
+			  $('.xuatSu').html("<span style='font-weight: bold'>Xuất Xứ: </span>"+ sanPham.xuatSu);
 			}
 			$('.thongTinChung').html("<span style='font-weight: bold'>Thông tin chung: </span>"+ sanPham.thongTinChung);
 			$('.donGia').html("<span style='font-weight: bold'>Đơn giá: </span>"+ sanPham.donGia +" VNĐ");
@@ -438,10 +438,10 @@ $(document).ready(function() {
 		if(sanPhamId != ''){
     	  $('.sanPhamTable tbody tr').remove();
     	  $('.pagination li').remove();
-		  var href = "http://localhost:8080/laptopshop/api/san-pham/"+sanPhamId;
+		  var href = "http://localhost:8080/carshop/api/san-pham/"+sanPhamId;
 		  $.get(href, function(sanPham) {
 			  var sanPhamRow = '<tr>' +
-              '<td>' + '<img src="/laptopshop/img/'+sanPham.id+'.png" class="img-responsive" style="height: 50px; width: 50px" />'+'</td>' +
+              '<td>' + '<img src="/carshop/img/'+sanPham.id+'.png" class="img-responsive" style="height: 50px; width: 50px" />'+'</td>' +
               '<td>' + sanPham.tenSanPham + '</td>' +
               '<td>' + sanPham.danhMuc.tenDanhMuc + '</td>' +
               '<td>' + sanPham.hangSanXuat.tenHangSanXuat + '</td>' +
@@ -450,8 +450,8 @@ $(document).ready(function() {
               '<td width="0%">'+'<input type="hidden" id="sanPhamId" value=' + sanPham.id + '>'+ '</td>' + 
               '<td><button class="btn btn-warning btnChiTiet" style="margin-right: 6px">Chi tiết</button>'  ;
 
-              var checkTenDanhMuc = (sanPham.danhMuc.tenDanhMuc.toLowerCase()).indexOf("Laptop".toLowerCase());
-                  sanPhamRow += ( checkTenDanhMuc != -1)?'  <button class="btn btn-primary btnCapNhatLapTop" >Cập nhật</button>':'<button class="btn btn-primary btnCapNhatOther" >Cập nhật</button>';
+              var checkTenDanhMuc = (sanPham.danhMuc.tenDanhMuc.toLowerCase()).indexOf("Car".toLowerCase());
+                  sanPhamRow += ( checkTenDanhMuc != -1)?'  <button class="btn btn-primary btnCapNhatCar" >Cập nhật</button>':'<button class="btn btn-primary btnCapNhatOther" >Cập nhật</button>';
                   sanPhamRow += ' <button class="btn btn-danger btnXoaSanPham">Xóa</button></td>'+'</tr>';
                   $('.sanPhamTable tbody').append(sanPhamRow);
 		  });

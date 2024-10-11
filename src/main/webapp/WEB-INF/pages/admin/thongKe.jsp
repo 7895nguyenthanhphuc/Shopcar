@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Quản lý nhãn hiệu</title>
+<title>Thống Kê Doanh Thu</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <script>
@@ -20,7 +20,7 @@
 			type : "GET",
 			data : data,
 			contentType : "application/json",
-			url : "http://localhost:8080/laptopshop/api/don-hang/report",
+			url : "http://localhost:8080/carshop/api/don-hang/report",
 			success : function(data) {
 				for (var i = 0; i < data.length; i++) {
 					label.push(data[i][0] + "/" + data[i][1]);
@@ -39,10 +39,10 @@
 		data = {
 			labels : label,
 			datasets : [ {
-				label : "Tổng giá trị ( Triệu đồng)",
+				label : "Tổng giá trị ( Tỷ đồng)",
 				backgroundColor : "#0000ff",
 				borderColor : "#0000ff",
-				borderWidth : 2,
+				borderWidth : 3,
 				hoverBackgroundColor : "#0043ff",
 				hoverBorderColor : "#0043ff",
 				data : dataForDataSets,
